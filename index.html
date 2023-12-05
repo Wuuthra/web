@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Sévère pour Gaspard</title>
+    <style>
+        body {
+            font-family: 'Impact', sans-serif;
+            margin: 20px;
+            cursor: pointer; /* Curseur change au survol de la page */
+        }
+
+        .warning-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 4px solid #ff4500;
+            border-radius: 10px;
+            background-color: #ffecb3;
+            position: relative;
+        }
+
+        h1 {
+            color: #ff4500;
+        }
+
+        p {
+            color: #333;
+        }
+
+        /* Style pour la vidéo cachée */
+        .hidden-video {
+            display: none;
+            margin-top: 20px;
+            opacity: 0; /* La vidéo est initialement invisible */
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: revealVideo 1s ease-out forwards; /* Animation CSS */
+        }
+
+        video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        /* Définition de l'animation de révélation */
+        @keyframes revealVideo {
+            from {
+                transform: translateY(-50px) scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="warning-container" onclick="toggleVideo()">
+        <h1>ATTENTION, Gaspard !</h1>
+        <p>
+            Écoute bien, Gaspard,
+        </p>
+        <p>
+            On va être clairs : tu ne veux pas foutre en l'air la configuration de cet Ubuntu. 
+            Si tu touches à quelque chose, tu risques de déclencher une catastrophe informatique.
+        </p>
+        <p>
+            On ne plaisante pas avec ça. Laisse les paramètres tranquilles, et tout ira bien pour toi.
+        </p>
+        <p>Considère-toi averti,<br>Ricardo Milos</p>
+
+        <!-- Vidéo cachée -->
+        <div class="hidden-video" id="hiddenVideo">
+            <span class="close-button" onclick="closeVideo()">✖</span>
+            <video id="myVideo" controls>
+                <source src="video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <script>
+        function toggleVideo() {
+            var hiddenVideo = document.getElementById("hiddenVideo");
+            hiddenVideo.style.display = (hiddenVideo.style.display === "none" || hiddenVideo.style.display === "") ? "block" : "none";
+            
+            var myVideo = document.getElementById("myVideo");
+            if (myVideo.paused) {
+                myVideo.play();
+            } else {
+                myVideo.pause();
+            }
+        }
+
+        function closeVideo() {
+            var hiddenVideo = document.getElementById("hiddenVideo");
+            var myVideo = document.getElementById("myVideo");
+
+            hiddenVideo.style.display = "none";
+            myVideo.pause();
+        }
+    </script>
+
+</body>
+</html>
